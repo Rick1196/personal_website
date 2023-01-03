@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="safe-top safe-left safe-right safe-bottom">
         <Header />
         <main>
-          <Component />
+          <Component {...pageProps} />
         </main>
       </div>
     </>
