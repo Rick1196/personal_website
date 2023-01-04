@@ -9,8 +9,9 @@ import { toHTML } from "@portabletext/to-html";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import Carousel from "../components/carousel";
 
-const AboutMeSection: React.FC = () => {
+const AboutMeSection: React.FC<{ facts: Fact[] }> = ({ facts }) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center min-h-full h-full w-full p-2 gap-8">
@@ -58,77 +59,20 @@ const AboutMeSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-full h-full w-full p-2">
+      <div className="flex flex-col justify-center min-h-full h-full w-full p-2 gap-6">
         <p className="font-normal text-2xl text-center">
           Know me a little bit more
         </p>
-        <div id="controls-carousel" className="relative" data-carousel="static">
-          <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-            <div className="duration-700 ease-in-out">
-              <p>item</p>
+        <Carousel>
+          {facts.map((fact, index) => (
+            <div
+              key={`fact_index`}
+              className="mb-4 text-base font-normal dark:text-gray-400"
+            >
+              {parse(toHTML(fact.description))}
             </div>
-            <div className="hidden duration-700 ease-in-out">
-              <p>item</p>
-            </div>
-            <div className="hidden duration-700 ease-in-out">
-              <p>item</p>
-            </div>
-            <div className="hidden duration-700 ease-in-out">
-              <p>item</p>
-            </div>
-            <div className="hidden duration-700 ease-in-out">
-              <p>item</p>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-prev
-          >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg
-                aria-hidden="true"
-                className="w-6 h-6 text-white dark:text-gray-800"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
-              <span className="sr-only">Previous</span>
-            </span>
-          </button>
-          <button
-            type="button"
-            className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-next
-          >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg
-                aria-hidden="true"
-                className="w-6 h-6 text-white dark:text-gray-800"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                ></path>
-              </svg>
-              <span className="sr-only">Next</span>
-            </span>
-          </button>
-        </div>
+          ))}
+        </Carousel>
       </div>
     </>
   );
@@ -195,7 +139,7 @@ export default function Home({
   return (
     <>
       <section className="min-h-[600px] grid md:grid-cols-2 grid-cols-1 md:divide-x border pt-2 pb-2">
-        <AboutMeSection />
+        <AboutMeSection {...{ facts }} />
       </section>
       <section className="min-h-[600px] border p-4 flex flex-col gap-6">
         <ExperienceSection {...{ experiences }} />
