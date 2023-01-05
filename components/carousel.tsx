@@ -1,7 +1,10 @@
 import React from "react";
 import LeftArrowIcon from "../icons/leftArrowIcon";
 import RightArrowIcon from "../icons/rightArrowIcon";
-const Carousel: React.FC<{ children: React.ReactNode[] }> = ({ children }) => {
+const Carousel: React.FC<{
+  children: React.ReactNode[];
+  isDarkModeEnabled: boolean;
+}> = ({ children, isDarkModeEnabled }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
 
   // We are using react ref to 'tag' each of the images. Below will create an array of
@@ -64,12 +67,12 @@ const Carousel: React.FC<{ children: React.ReactNode[] }> = ({ children }) => {
       <div className="flex flex-row w-full justify-center gap-2">
         <button type="button" onClick={previousImage}>
           <span role="img" aria-label="Arrow left">
-            <LeftArrowIcon />
+            <LeftArrowIcon color={isDarkModeEnabled ? "white" : "black"} />
           </span>
         </button>
         <button type="button" onClick={nextImage}>
           <span role="img" aria-label="Arrow right">
-            <RightArrowIcon />
+            <RightArrowIcon color={isDarkModeEnabled ? "white" : "black"} />
           </span>
         </button>
       </div>

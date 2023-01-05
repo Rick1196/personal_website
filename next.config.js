@@ -7,7 +7,8 @@ const nextConfig = {
       "static.licdn.com",
       "https://github.githubassets.com",
       "github.githubassets.com",
-      "ssl.gstatic.com"
+      "ssl.gstatic.com",
+      "dev-to-uploads.s3.amazonaws.com",
     ],
   },
 };
