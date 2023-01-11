@@ -1,6 +1,6 @@
 import React from "react";
 
-const HamburgerMenu: React.FC = () => {
+const HamburgerMenu: React.FC<{ color: string }> = ({ color }) => {
   return (
     <svg
       width="18"
@@ -9,7 +9,7 @@ const HamburgerMenu: React.FC = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M0 1H9M0 7H9M0 3.82353H9" stroke="black" />
+      <path d="M0 1H9M0 7H9M0 3.82353H9" stroke={color || "black"} />
     </svg>
   );
 };

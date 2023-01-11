@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           darkModeEnabled={darkModeEnabled}
         />
         <ThemeModeContext.Provider value={{ darkModeEnabled }}>
-          <main className="dark:bg-gray-900">
+          <main className="dark:bg-gray-900 min-h-screen">
             <Component {...pageProps} />
           </main>
         </ThemeModeContext.Provider>

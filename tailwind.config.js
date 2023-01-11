@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    boxShadow: {
+      card: "-5px 10px 19px -8px rgba(0,0,0,0.76);",
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {

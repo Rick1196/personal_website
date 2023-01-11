@@ -40,7 +40,7 @@ const Header: React.FC<{
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
-            <HamburgerMenu />
+            <HamburgerMenu color={darkModeEnabled ? "white" : "black"} />
           </button>
         </div>
         <div
