@@ -83,18 +83,14 @@ export default function Articles({
                   {article.title}
                 </h1>
                 <div className="flex flex-row justify-end gap-2">
-                  <button
-                    className="border rounded p-2 dark:text-white shadow-button dark:shadow-darkButton"
-                    aria-label="read on dev.to"
-                  >
-                    Read on Dev.to
-                  </button>
-                  <button
-                    className="border rounded p-2 dark:text-white shadow-button dark:shadow-darkButton"
-                    aria-label="read here"
-                  >
-                    Read here
-                  </button>
+                  <Link href={article.link} target="_blank">
+                    <button
+                      className="border rounded p-2 dark:text-white shadow-button dark:shadow-darkButton"
+                      aria-label="read on dev.to"
+                    >
+                      Read on Dev.to
+                    </button>
+                  </Link>
                 </div>
                 <div className="flex flex-row gap-2">
                   {article.category
