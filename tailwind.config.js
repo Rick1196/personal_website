@@ -9,6 +9,13 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    boxShadow: {
+      card: "-5px 10px 19px -8px rgba(0,0,0,0.76);",
+      darkCard: "-5px 10px 19px -8px rgba(240,234,234,0.46);",
+      button: "-9px 5px 12px -1px rgba(0,0,0,0.46);",
+      darkButton: "-9px 5px 12px -1px rgba(240,234,234,0.46);",
+      bullet: "-9px 5px 20px -1px rgba(219,195,242,0.38);",
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {
