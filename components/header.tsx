@@ -67,7 +67,7 @@ const Header: React.FC<{
                 My Articles
               </Link>
             </li>
-            {inIframe() ? (
+            {!inIframe() ? (
               <li>
                 <Link
                   href="/mobile"
