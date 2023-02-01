@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import HamburgerMenu from "../icons/hamburgerIcon";
 import MoonIcon from "../icons/moonIcon";
 import SonIcon from "../icons/sonIcon";
+import { inIframe } from "../utils/common";
 
 const Header: React.FC<{
   setDarkModeEnabled: React.Dispatch<React.SetStateAction<boolean>>;
@@ -66,6 +67,16 @@ const Header: React.FC<{
                 My Articles
               </Link>
             </li>
+            {inIframe() ? (
+              <li>
+                <Link
+                  href="/mobile"
+                  className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+                >
+                  Check a mobile device preview
+                </Link>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
