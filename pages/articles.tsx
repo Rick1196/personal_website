@@ -129,7 +129,6 @@ export async function getStaticProps() {
       }
     }
   }
-  console.log(Object.fromEntries(categories));
 
   return {
     props: {
