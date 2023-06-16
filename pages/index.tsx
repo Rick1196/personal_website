@@ -11,6 +11,22 @@ import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../components/carousel";
 import { ThemeModeContext } from "../utils/contexts";
+import staticData from "../utils/static-data";
+import { SocialMediaContent } from "../types/social-media-content";
+
+const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
+(<div className="flex flex-row gap-2 justify-start w-full">
+  <Image
+    src={content.imageSrc}
+    alt={content.alt}
+    width={content.width}
+    height={content.height}
+  />
+  <Link href={content.externalRef} target="_blank">
+    {content.copy}
+  </Link>
+</div>)
+
 
 const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
   facts,
@@ -25,62 +41,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
         </div>
         <div className="flex flex-col justify-start items-center gap-2">
           <p className="font-normal text-2xl">Find me on:</p>
-          <div className="flex flex-row gap-2 justify-start w-full">
-            <Image
-              src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
-              alt="gmail"
-              width={18}
-              height={12}
-            />
-            <Link href="mailto:ricardompp11@gmail.com" target="_blank">
-              ricardompp11@gmail.com
-            </Link>
-          </div>
-          <div className="flex flex-row gap-2 justify-start w-full">
-            <Image
-              src="https://static.licdn.com/sc/h/8s162nmbcnfkg7a0k8nq9wwqo"
-              alt="linkedin"
-              width={18}
-              height={12}
-            />
-            <Link
-              target="_blank`"
-              className="text-blue"
-              href="https://www.linkedin.com/in/ricardo-manuel-p%C3%A9rez-plata-533037176/"
-            >
-              <span>Ricardo Perez at LinkedIn</span>
-            </Link>
-          </div>
-          <div className="flex flex-row gap-2 justify-start w-full">
-            <Image
-              src="https://github.githubassets.com/favicons/favicon.png"
-              alt="github"
-              width={18}
-              height={12}
-            />
-            <Link
-              target="_blank"
-              className="text-blue"
-              href="https://github.com/Rick1196"
-            >
-              <span>Ricardo Perez at GIthub</span>
-            </Link>
-          </div>
-          <div className="flex flex-row gap-2 justify-start w-full">
-            <Image
-              src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
-              alt="dev.to"
-              width={18}
-              height={12}
-            />
-            <Link
-              target="_blank"
-              className="text-blue"
-              href="https://dev.to/rick1196"
-            >
-              <span>Ricardo Perez at Dev.to</span>
-            </Link>
-          </div>
+          {staticData.personalInformation.socialMedia.map((socialMediaItem) => (<SocialMediaItem content={socialMediaItem} />))}
         </div>
       </div>
       <div className="flex flex-col justify-center min-h-full h-full w-full p-2 gap-6">
@@ -138,9 +99,8 @@ const ExperienceSection: React.FC<{
           <li key={`experience_${index}`} className="mb-10 ml-4">
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
             <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
-              {`${getStringDate(experience.from)} ${
-                experience.to ? `-${getStringDate(experience.to)}` : "..."
-              }`}
+              {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
+                }`}
             </time>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {experience.title} <span>{`(${experience.company})`}</span>
