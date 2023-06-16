@@ -41,7 +41,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
         </div>
         <div className="flex flex-col justify-start items-center gap-2">
           <p className="font-normal text-2xl">Find me on:</p>
-          {staticData.personalInformation.socialMedia.map((socialMediaItem) => (<SocialMediaItem content={socialMediaItem} />))}
+          {staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}
         </div>
       </div>
       <div className="flex flex-col justify-center min-h-full h-full w-full p-2 gap-6">
