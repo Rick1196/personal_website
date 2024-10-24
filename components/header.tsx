@@ -67,6 +67,14 @@ const Header: React.FC<{
                 My Articles
               </Link>
             </li>
+            <li>
+              <Link
+                href="/github_projects"
+                className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+              >
+                My Repositories
+              </Link>
+            </li>
             {!inIframe() ? (
               <li>
                 <Link
