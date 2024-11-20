@@ -13,25 +13,31 @@ const Header: React.FC<{
   const [displayMobileMenu, setDisplayMobileMenu] = useState<boolean>(false);
   const router = useRouter();
   return (
-    <nav className="bg-transparent px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full sticky">
-      <div className="container flex flex-wrap items-center justify-end mx-auto">
-        <div className="flex gap-2 md:order-2">
-          <button
-            type="button"
-            className="bg-transparent"
-            aria-label="dark mode"
-            onClick={() => setDarkModeEnabled(true)}
-          >
-            <MoonIcon color={darkModeEnabled ? "white" : "black"} />
-          </button>
-          <button
-            type="button"
-            className="bg-transparent"
-            aria-label="light mode"
-            onClick={() => setDarkModeEnabled(false)}
-          >
-            <SonIcon color={darkModeEnabled ? "white" : "black"} />
-          </button>
+    <nav className="header-container">
+      <div className="theme-toggler-container">
+        <div className="theme-toggler-title">
+          <span><SonIcon /></span>
+          <span><MoonIcon /></span>
+        </div>
+        <div className="theme-toggler">
+          <label className="theme-check">
+            <input id="first" name="toggle-state" type="radio" checked />
+            <span className="checkmark"></span>
+          </label>
+
+          <label className="theme-check">
+            <input id="second" name="toggle-state" type="radio" />
+            <span className="checkmark"></span>
+          </label>
+
+        </div>
+      </div>
+      <div
+        className="options-container"
+        id="navbar-sticky"
+      >
+
+        <div className="mobile-menu">
           <button
             onClick={() => setDisplayMobileMenu((prev) => !prev)}
             data-collapse-toggle="navbar-sticky"
@@ -40,42 +46,29 @@ const Header: React.FC<{
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
             <HamburgerMenu color={darkModeEnabled ? "white" : "black"} />
           </button>
         </div>
-        <div
-          className={`${
-            displayMobileMenu ? "" : "hidden"
-          } items-center justify-between w-full md:flex md:w-auto md:order-1`}
-          id="navbar-sticky"
-        >
-          <ul className="flex flex-col p-4 mt-4 bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
-            <li>
-              <Link
-                href="/"
-                className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
-              >
-                About me
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/articles"
-                className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
-              >
-                My Articles
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/github_projects"
-                className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
-              >
-                My Repositories
-              </Link>
-            </li>
-            {!inIframe() ? (
+        <div className="desktop-options">
+          <Link
+            href="/"
+            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+          >
+            About me
+          </Link>
+          <Link
+            href="/articles"
+            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+          >
+            My Articles
+          </Link>
+          <Link
+            href="/github_projects"
+            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+          >
+            My Repositories
+          </Link>
+          {/* {!inIframe() ? (
               <li>
                 <Link
                   href="/mobile"
@@ -84,8 +77,7 @@ const Header: React.FC<{
                   Check a mobile device preview
                 </Link>
               </li>
-            ) : null}
-          </ul>
+            ) : null} */}
         </div>
       </div>
     </nav>

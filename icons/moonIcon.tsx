@@ -1,6 +1,6 @@
 import React from "react";
 
-const MoonIcon: React.FC<{ color: string }> = ({ color }) => {
+const MoonIcon: React.FC<{ color?: string }> = ({ color }) => {
   return (
     <svg
       width="24"

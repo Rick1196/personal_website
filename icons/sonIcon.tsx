@@ -1,5 +1,5 @@
 import React from "react";
-const SonIcon: React.FC<{ color: string }> = ({ color }) => {
+const SonIcon: React.FC<{ color?: string }> = ({ color }) => {
   return (
     <svg
       width="24"

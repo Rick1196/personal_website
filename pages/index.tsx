@@ -34,7 +34,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-full h-full w-full p-2 gap-8 dark:text-white">
+      <div className="with_right_divider">
         <div className="flex flex-col justify-center items-center gap-2">
           <p className="font-medium text-4xl text-center">{`Hi, I'm Ricardo`}</p>
           <p className="font-medium text-2xl text-center">{`Welcome to my personal portfolio`}</p>
@@ -44,7 +44,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
           {staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}
         </div>
       </div>
-      <div className="flex flex-col justify-center min-h-full h-full w-full p-2 gap-6">
+      <div className="">
         <p className="font-normal text-2xl text-center dark:text-white">
           Know me a little bit more
         </p>
@@ -94,9 +94,9 @@ const ExperienceSection: React.FC<{
           experience
         </p>
       </div>
-      <ol className="relative border-l border-gray-200 dark:border-gray-700 w-full">
+      <div className="relative border-l border-gray-200 dark:border-gray-700 w-full">
         {experiences.map((experience, index) => (
-          <li key={`experience_${index}`} className="mb-10 ml-4">
+          <div key={`experience_${index}`} className="mb-10 ml-4">
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
             <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
               {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
@@ -110,7 +110,7 @@ const ExperienceSection: React.FC<{
                 toHTML(experience.description, {
                   components: {
                     list: ({ children, value, ...rest }) => {
-                      return `<ul className="list-disc list-inside p-2">${children}</ul>`;
+                      return `<div className="list-disc list-inside p-2">${children}</div>`;
                     },
                   },
                 })
@@ -124,9 +124,9 @@ const ExperienceSection: React.FC<{
                 {tech}
               </span>
             ))}
-          </li>
+          </div>
         ))}
-      </ol>
+      </div>
     </>
   );
 };
@@ -138,8 +138,8 @@ export default function Home({
   const themeMode = useContext(ThemeModeContext);
 
   return (
-    <div className="flex flex-col divide-y span-2">
-      <section className="min-h-[600px] grid md:grid-cols-2 grid-cols-1 md:divide-x pt-2 pb-2">
+    <div className="main-container">
+      <section className="min-h-[600px] grid md:grid-cols-2 grid-cols-1 pt-2 pb-2">
         <AboutMeSection
           {...{ facts, darkModeEnabled: themeMode.darkModeEnabled }}
         />
