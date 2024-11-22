@@ -12,6 +12,13 @@ const Header: React.FC<{
 }> = ({ setDarkModeEnabled, darkModeEnabled }) => {
   const [displayMobileMenu, setDisplayMobileMenu] = useState<boolean>(false);
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+
   return (
     <nav className="header-container">
       <div className="theme-toggler-container">
@@ -39,7 +46,7 @@ const Header: React.FC<{
 
         <div className="mobile-menu">
           <button
-            onClick={() => setDisplayMobileMenu((prev) => !prev)}
+            onClick={() => toggleMenu()}
             data-collapse-toggle="navbar-sticky"
             type="button"
             className="inline-flex items-center p-2 text-sm text-gray-500 bg-transparent md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -48,6 +55,34 @@ const Header: React.FC<{
           >
             <HamburgerMenu color={darkModeEnabled ? "white" : "black"} />
           </button>
+          <div className={`menu ${isOpen ? 'open' : ''}`}>
+            <ul>
+              <li>
+                <Link
+                  href="/"
+                  className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+                >
+                  About me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/articles"
+                  className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+                >
+                  My Articles
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/github_projects"
+                  className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
+                >
+                  My Repositories
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="desktop-options">
           <Link
