@@ -2,28 +2,46 @@
 
 :root {
   /* colors light theme(default theme) */
-  --primary-color: #f2f2f2; /* Off-White */
-  --secondary-color: #e6e6e6; /* Light Gray */
-  --text-color: #333333; /* Dark Gray */
-  --heading-color: #222222; /* Darker Gray */
-  --accent-color: #007bff; /* Blue */
-  --error-color: #dc3545; /* Red */
-  --success-color: #28a745; /* Green */
-  --warning-color: #ffc107; /* Yellow */
-  --info-color: #17a2b8; /* Blue */
-  --shadow-box-color: rgba(51,51,51,1);
+  --primary-color: #f2f2f2;
+  /* Off-White */
+  --secondary-color: #e6e6e6;
+  /* Light Gray */
+  --text-color: #333333;
+  /* Dark Gray */
+  --heading-color: #222222;
+  /* Darker Gray */
+  --accent-color: #007bff;
+  /* Blue */
+  --error-color: #dc3545;
+  /* Red */
+  --success-color: #28a745;
+  /* Green */
+  --warning-color: #ffc107;
+  /* Yellow */
+  --info-color: #17a2b8;
+  /* Blue */
+  --shadow-box-color: rgba(51, 51, 51, 1);
 }
 
-.dark-theme{
-  --primary-color: #121212; /* Dark Gray */
-  --secondary-color: #222222; /* Darker Gray */
-  --text-color: #f2f2f2; /* Off-White */
-  --heading-color: #ffffff; /* White */
-  --accent-color: #007bff; /* Blue */
-  --error-color: #dc3545; /* Red */
-  --success-color: #28a745; /* Green */
-  --warning-color: #ffc107; /* Yellow */
-  --info-color: #17a2b8; /* Blue */
+.dark-theme {
+  --primary-color: #121212;
+  /* Dark Gray */
+  --secondary-color: #222222;
+  /* Darker Gray */
+  --text-color: #f2f2f2;
+  /* Off-White */
+  --heading-color: #ffffff;
+  /* White */
+  --accent-color: #007bff;
+  /* Blue */
+  --error-color: #dc3545;
+  /* Red */
+  --success-color: #28a745;
+  /* Green */
+  --warning-color: #ffc107;
+  /* Yellow */
+  --info-color: #17a2b8;
+  /* Blue */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,24 +51,20 @@
     --background-end-rgb: 0, 0, 0;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
+    --secondary-glow: linear-gradient(to bottom right,
+        rgba(1, 65, 255, 0),
+        rgba(1, 65, 255, 0),
+        rgba(1, 65, 255, 0.3));
 
     --tile-start-rgb: 2, 13, 46;
     --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
+    --tile-border: conic-gradient(#ffffff80,
+        #ffffff40,
+        #ffffff30,
+        #ffffff20,
+        #ffffff10,
+        #ffffff10,
+        #ffffff80);
 
     --callout-rgb: 20, 20, 20;
     --callout-border-rgb: 108, 108, 108;
@@ -71,35 +85,32 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  color: rbg(--foreground-rgb);
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
 }
 
-body::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
 }
 
-body::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
 }
 
-body::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #1e2e52;
-}
-
-main{
-  padding: 1rem;
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: var(--text-color);
+}
+
+nav {
+  color: var(--text-color);
 }
 
 
@@ -114,6 +125,11 @@ a {
   }
 }
 
+/* Base class for safe area */
+.safe {
+  margin: 1rem; /* Adjust the margin as needed */
+}
+
 .carousel {
   display: inline-flex;
   overflow-x: hidden;
@@ -121,8 +137,10 @@ a {
   scroll-snap-type: x mandatory;
   /* all below will hide the scrollbar on all browsers.    */
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
 }
 
 pre {
@@ -133,4 +151,3 @@ pre {
   border-radius: 0.2rem;
   width: 100%;
 }
-

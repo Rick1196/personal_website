@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import HamburgerMenu from "../icons/hamburgerIcon";
 import MoonIcon from "../icons/moonIcon";
 import SonIcon from "../icons/sonIcon";
@@ -18,22 +18,28 @@ const Header: React.FC<{
     setIsOpen(!isOpen);
   };
 
+  const isInFrame = useMemo(inIframe, [])
+
+  const handleThemeChange = useCallback((value: string) => {
+    value === 'dark' ? setDarkModeEnabled(true) : setDarkModeEnabled(false);
+  }, [])
+
 
   return (
     <nav className="header-container">
       <div className="theme-toggler-container">
         <div className="theme-toggler-title">
-          <span><SonIcon /></span>
-          <span><MoonIcon /></span>
+          <span><SonIcon color={darkModeEnabled?'white':undefined}/></span>
+          <span><MoonIcon color={darkModeEnabled?'white':undefined}/></span>
         </div>
         <div className="theme-toggler">
           <label className="theme-check">
-            <input id="first" name="toggle-state" type="radio" checked />
+            <input id="light" name="toggle-state" type="radio" value={'light'} onChange={({ target: { value } }) => handleThemeChange(value)} checked={!darkModeEnabled} />
             <span className="checkmark"></span>
           </label>
 
           <label className="theme-check">
-            <input id="second" name="toggle-state" type="radio" />
+            <input id="dark" name="toggle-state" type="radio" value={'dark'} onChange={({ target: { value } }) => handleThemeChange(value)} checked={darkModeEnabled} />
             <span className="checkmark"></span>
           </label>
 
@@ -41,7 +47,6 @@ const Header: React.FC<{
       </div>
       <div
         className="options-container"
-        id="navbar-sticky"
       >
 
         <div className="mobile-menu">
@@ -87,32 +92,26 @@ const Header: React.FC<{
         <div className="desktop-options">
           <Link
             href="/"
-            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
           >
             About me
           </Link>
           <Link
             href="/articles"
-            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
           >
             My Articles
           </Link>
           <Link
             href="/github_projects"
-            className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
           >
             My Repositories
           </Link>
-          {/* {!inIframe() ? (
-              <li>
-                <Link
-                  href="/mobile"
-                  className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
-                >
-                  Check a mobile device preview
-                </Link>
-              </li>
-            ) : null} */}
+          {!isInFrame ? (
+            <Link
+              href="/mobile"
+            >
+              Check a mobile device preview
+            </Link>
+          ) : null}
         </div>
       </div>
     </nav>

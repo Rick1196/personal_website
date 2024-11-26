@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Ricardo, Software engineer</title>
+        <title>Ricardo, Software Engineer</title>
         <meta
           name="description"
           content="Ricardo, software engineer personal site"
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <div
         className={`safe-top safe-left safe-right safe-bottom ${
-          darkModeEnabled ? "dark" : ""
+          darkModeEnabled ? "dark-theme" : ""
         }`}
       >
         <Header
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           darkModeEnabled={darkModeEnabled}
         />
         <ThemeModeContext.Provider value={{ darkModeEnabled }}>
-          <main className="dark:bg-gray-900 min-h-screen">
+          <main>
             <Component {...pageProps} />
           </main>
         </ThemeModeContext.Provider>
