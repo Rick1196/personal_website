@@ -15,7 +15,7 @@ import staticData from "../utils/static-data";
 import { SocialMediaContent } from "../types/social-media-content";
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
-(<div className="flex flex-row gap-2 justify-start w-full">
+(<div className="flex-row">
   <Image
     src={content.imageSrc}
     alt={content.alt}
@@ -34,13 +34,13 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
 }) => {
   return (
     <>
-      <div className="with_right_divider">
-        <div className="flex flex-col justify-center items-center gap-2">
-          <p className="font-medium text-4xl text-center">{`Hi, I'm Ricardo`}</p>
-          <p className="font-medium text-2xl text-center">{`Welcome to my personal portfolio`}</p>
+      <div className="with_right_divider flex-columns flex-center-elements space-m" >
+        <div className="flex-columns flex-center-elements space-s">
+          <p className="center-text">{`Hi, I'm Ricardo`}</p>
+          <p className="center-text">{`Welcome to my personal portfolio`}</p>
         </div>
-        <div className="flex flex-col justify-start items-center gap-2">
-          <p className="font-normal text-2xl">Find me on:</p>
+        <div className="flex-columns flex-center-elemnts space-s">
+          <p className="center-text">Find me on:</p>
           {staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}
         </div>
       </div>
@@ -139,12 +139,12 @@ export default function Home({
 
   return (
     <div className="main-container">
-      <section className="min-h-[600px] grid md:grid-cols-2 grid-cols-1 pt-2 pb-2">
+      <section className="section horizontal with_right_divider">
         <AboutMeSection
           {...{ facts, darkModeEnabled: themeMode.darkModeEnabled }}
         />
       </section>
-      <section className="min-h-[600px]   p-4 flex flex-col gap-6">
+      <section className="section vertical">
         <ExperienceSection
           {...{ experiences, darkModeEnabled: themeMode.darkModeEnabled }}
         />
