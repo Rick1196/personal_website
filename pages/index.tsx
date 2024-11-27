@@ -15,7 +15,7 @@ import staticData from "../utils/static-data";
 import { SocialMediaContent } from "../types/social-media-content";
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
-(<div className="flex-row">
+(<div className="flex-row flex-justify-start-elements flex-align-center-elements">
   <Image
     src={content.imageSrc}
     alt={content.alt}
@@ -34,14 +34,14 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
 }) => {
   return (
     <>
-      <div className="with_right_divider flex-columns flex-center-elements space-m" >
+      <div className="with-right flex-columns flex-center-elements space-m" >
         <div className="flex-columns flex-center-elements space-s">
           <p className="center-text">{`Hi, I'm Ricardo`}</p>
           <p className="center-text">{`Welcome to my personal portfolio`}</p>
         </div>
-        <div className="flex-columns flex-center-elemnts space-s">
+        <div className="flex-columns flex-align-center-elements space-s">
           <p className="center-text">Find me on:</p>
-          {staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}
+          <div className="flex-columns flex-justify-start-elements space-s">{staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}</div>
         </div>
       </div>
       <div className="">
@@ -85,7 +85,7 @@ const ExperienceSection: React.FC<{
 }> = ({ experiences, darkModeEnabled }) => {
   return (
     <>
-      <div className="flex justify-end items-center gap-2 dark:text-white">
+      <div className="flex-row flex-justify-end-elements flex-align-center-elements space-m">
         <span>
           <ClockIcon color={darkModeEnabled ? "white" : "black"} />
         </span>
@@ -94,38 +94,40 @@ const ExperienceSection: React.FC<{
           experience
         </p>
       </div>
-      <div className="relative border-l border-gray-200 dark:border-gray-700 w-full">
-        {experiences.map((experience, index) => (
-          <div key={`experience_${index}`} className="mb-10 ml-4">
-            <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
-              {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
-                }`}
-            </time>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {experience.title} <span>{`(${experience.company})`}</span>
-            </h3>
-            <div className="mb-4 text-base font-normal text-gray-500 dark:text-white">
-              {parse(
-                toHTML(experience.description, {
-                  components: {
-                    list: ({ children, value, ...rest }) => {
-                      return `<div className="list-disc list-inside p-2">${children}</div>`;
+      <div className="timeline">
+        <ul>
+          {experiences.map((experience, index) => (
+            <li key={`experience_${index}`}>
+              <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+              <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
+                {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
+                  }`}
+              </time>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {experience.title} <span>{`(${experience.company})`}</span>
+              </h3>
+              <div className="mb-4 text-base font-normal text-gray-500 dark:text-white">
+                {parse(
+                  toHTML(experience.description, {
+                    components: {
+                      list: ({ children, value, ...rest }) => {
+                        return `<div className="list-disc list-inside p-2">${children}</div>`;
+                      },
                     },
-                  },
-                })
-              )}
-            </div>
-            {experience.technologies.map((tech, techIndex) => (
-              <span
-                key={`technology_${techIndex}_from_experience_${index}`}
-                className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-white dark:text-grey-800"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        ))}
+                  })
+                )}
+              </div>
+              {experience.technologies.map((tech, techIndex) => (
+                <span
+                  key={`technology_${techIndex}_from_experience_${index}`}
+                  className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-white dark:text-grey-800"
+                >
+                  {tech}
+                </span>
+              ))}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
@@ -138,8 +140,8 @@ export default function Home({
   const themeMode = useContext(ThemeModeContext);
 
   return (
-    <div className="main-container">
-      <section className="section horizontal with_right_divider">
+    <div className="main-container space-l">
+      <section className="section horizontal with-bottom">
         <AboutMeSection
           {...{ facts, darkModeEnabled: themeMode.darkModeEnabled }}
         />
