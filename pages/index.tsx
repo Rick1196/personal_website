@@ -34,7 +34,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
 }) => {
   return (
     <>
-      <div className="with-right flex-columns flex-center-elements space-m" >
+      <div className="with-right only-on-desktop flex-columns flex-center-elements space-m" >
         <div className="flex-columns flex-center-elements space-s">
           <p className="center-text">{`Hi, I'm Ricardo`}</p>
           <p className="center-text">{`Welcome to my personal portfolio`}</p>
@@ -97,34 +97,39 @@ const ExperienceSection: React.FC<{
       <div className="timeline">
         <ul>
           {experiences.map((experience, index) => (
-            <li key={`experience_${index}`}>
-              <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-              <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
-                {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
-                  }`}
-              </time>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {experience.title} <span>{`(${experience.company})`}</span>
-              </h3>
-              <div className="mb-4 text-base font-normal text-gray-500 dark:text-white">
-                {parse(
-                  toHTML(experience.description, {
-                    components: {
-                      list: ({ children, value, ...rest }) => {
-                        return `<div className="list-disc list-inside p-2">${children}</div>`;
+            <li>
+              <div className="card flex flex-columns space-s">
+                <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
+                  {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
+                    }`}
+                </time>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {experience.title} <span>{`(${experience.company})`}</span>
+                </h3>
+                <div className="">
+                  {parse(
+                    toHTML(experience.description, {
+                      components: {
+                        list: ({ children, value, ...rest }) => {
+                          return `<div className="padding-m">
+                            <ul>${children}</ul>
+                          </div>`;
+                        },
                       },
-                    },
-                  })
-                )}
+                    })
+                  )}
+                </div>
+                <div className="flex flex-row flex-wrap">
+                  {experience.technologies.map((tech, techIndex) => (
+                    <span
+                      key={`technology_${techIndex}_from_experience_${index}`}
+                      className="bubble"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-              {experience.technologies.map((tech, techIndex) => (
-                <span
-                  key={`technology_${techIndex}_from_experience_${index}`}
-                  className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-white dark:text-grey-800"
-                >
-                  {tech}
-                </span>
-              ))}
             </li>
           ))}
         </ul>
