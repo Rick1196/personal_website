@@ -184,7 +184,7 @@
   border-right: 1px solid var(--text-color);
 }
 
-.with-right.only-on-desktop{
+.with-right.only-on-desktop {
   @media (width <760px) {
     border-right: none;
   }
@@ -194,10 +194,11 @@
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 1rem;
+
   @media (width < 760px) {
     display: flex;
     flex-direction: column;
-    gap:2rem;
+    gap: 2rem;
   }
 }
 
@@ -251,23 +252,23 @@
   gap: 2rem
 }
 
-.flex-wrap{
+.flex-wrap {
   flex-wrap: wrap;
 }
 
 .timeline {
-  > ul > li {
+  >ul>li {
     list-style-type: none;
     border-left: 2px solid var(--text-color);
     padding: 10px 5px;
   }
 
-  > ul > li {
+  >ul>li {
     padding: 20px 20px;
     position: relative;
   }
 
-  > ul > li:before {
+  >ul>li:before {
     position: absolute;
     content: '';
     width: 10px;
@@ -280,22 +281,44 @@
   }
 }
 
-.card{
-  box-shadow:  0px 5px 15px 0px var(--shadow-box-color);
+.card {
+  box-shadow: 0px 5px 15px 0px var(--shadow-box-color);
+  padding: 1rem;
+  
+  &.full{
+    width: 100%;
+  }
+}
+
+.card.active {
+  display: block;
+}
+
+.card.hidden {
+
+  display: none;
+
+}
+
+
+.padding-m {
   padding: 1rem;
 }
 
-.padding-m{
-  padding: 1rem;
-}
 
-
-.bubble{
+.bubble {
   border-radius: 25px;
   padding: 8px;
   background-color: var(--secondary-color);
   display: flex;
   align-items: center;
   justify-items: center;
-  box-shadow:  0px 5px 10px 0px var(--shadow-box-color);
+  box-shadow: 0px 5px 10px 0px var(--shadow-box-color);
+}
+
+button.ghost{
+  background-color: transparent;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
 }

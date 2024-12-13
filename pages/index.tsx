@@ -44,15 +44,14 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
           <div className="flex-columns flex-justify-start-elements space-s">{staticData.personalInformation.socialMedia.map((socialMediaItem, index) => (<SocialMediaItem key={index} content={socialMediaItem} />))}</div>
         </div>
       </div>
-      <div className="">
-        <p className="font-normal text-2xl text-center dark:text-white">
+      <div className="padding-m">
+        <p className="center-text">
           Know me a little bit more
         </p>
         <Carousel isDarkModeEnabled={darkModeEnabled}>
           {facts.map((fact, index) => (
             <div
               key={`fact_index`}
-              className="mb-4 text-base font-normal dark:text-white"
             >
               {parse(
                 toHTML(fact.description, {
