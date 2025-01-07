@@ -70,7 +70,7 @@ const Header: React.FC<{
                   About me
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/articles"
                   className="block py-2 pl-3 pr-4 text-white rounded text-gray-700 md:p-0 dark:text-white"
@@ -85,7 +85,7 @@ const Header: React.FC<{
                 >
                   My Repositories
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -95,7 +95,7 @@ const Header: React.FC<{
           >
             About me
           </Link>
-          <Link
+          {/* <Link
             href="/articles"
           >
             My Articles
@@ -104,7 +104,7 @@ const Header: React.FC<{
             href="/github_projects"
           >
             My Repositories
-          </Link>
+          </Link> */}
           {!isInFrame ? (
             <Link
               href="/mobile"

@@ -145,6 +145,7 @@ export default function Home({
 
   return (
     <div className="main-container space-l">
+      <Link href="/pdf_resume">downalod PDF resume</Link>
       <section className="section horizontal with-bottom">
         <AboutMeSection
           {...{ facts, darkModeEnabled: themeMode.darkModeEnabled }}
