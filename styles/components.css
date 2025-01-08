@@ -303,9 +303,24 @@
 
 }
 
+.padding-s {
+  padding: 0.5rem;
+}
 
 .padding-m {
   padding: 1rem;
+}
+.padding{
+  padding:1rem;
+}
+.padding--s{
+    padding: 0.5rem;
+}
+.padding--top--s{
+  padding-top: 0.5rem;
+}
+.padding--top--m{
+  padding-top: 1rem;
 }
 
 
@@ -328,4 +343,31 @@ button.ghost{
 
 .footer{
   background-color: var(--primary-color);
+}
+
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html, body {
+    height: initial !important;
+    overflow: initial !important;
+  }
+}
+
+@media print {
+  .page-break {
+    margin-top: 2rem;
+    display: block;
+    page-break-before: auto;
+  }
+}
+
+
+@page {
+  size: auto;
+  margin: 20mm;
 }
