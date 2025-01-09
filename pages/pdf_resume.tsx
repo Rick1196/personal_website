@@ -7,31 +7,35 @@ import { differenceInYears } from "date-fns";
 import { toHTML } from "@portabletext/to-html";
 import parse from "html-react-parser";
 import { getStringDate } from "../utils/date";
+import DownloadIcon from "../icons/download";
 
 
 export default function PDFResume({ experiences, facts }: InferGetStaticPropsType<typeof getStaticProps>) {
     const contentRef = useRef<HTMLDivElement>(null);
-    const handlePrint = useReactToPrint({ contentRef });
+    const handlePrint = useReactToPrint({ contentRef, documentTitle: 'Ricardo_Perez.pdf' });
     return (
-        <div className="main-container space-l">
-            <button onClick={() => handlePrint()}>Print</button>
+        <div className="main-container space-l font--m">
+            <div className="to-the-right"><button className="ghost horizontal-shaking padding-m font-lg flex flex-row flex-align-center-elements" onClick={() => handlePrint()}>Download <DownloadIcon /></button></div>
             <div className="padding-m" ref={contentRef}>
                 <section className="with-bottom">
                     <div className="center-text">
                         <h1>Ricardo Manuel Perez Plata</h1>
-                        <h2>Software Engineer</h2>
+                        <h2>FE Software Engineer</h2>
                     </div>
                     <div className="flex flex-columns space-s padding-s">
-                        <a href="https://github.com/Rick1196">Github</a>
-                        <a href="ricardompp11@gmail.com">
-                            ricardompp11@gmail.com
-                        </a>
-                        <a href="https://personal-website-rick1196.vercel.app/">My website</a>
+                        <p>{"Check my projects: "}<a href="https://github.com/Rick1196">Github</a></p>
+                        <p>
+                            {'Send me an email: '}
+                            <a href="ricardompp11@gmail.com">
+                                ricardompp11@gmail.com
+                            </a>
+                        </p>
+                        <p>{'Check my personam website: '}<a href="https://personal-website-rick1196.vercel.app/">My website</a></p>
                     </div>
                 </section>
                 <section className="with-bottom padding-s">
-                    <p>Employment</p>
-                    <p>
+                    <p className="title">Employment</p>
+                    <p className="sub-title">
                         {differenceInYears(new Date(), new Date("01/01/2018"))} years of
                         experience
                     </p>
@@ -41,11 +45,11 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                                 <li className="padding--top--m">
                                     <div className="page-break" />
                                     <div className="flex flex-columns space-s">
-                                     
+
                                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                                             {experience.title} <span>{`(${experience.company})`}</span>
                                         </h3>
-                                        <p className="">
+                                        <p className="sub-title">
                                             {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
                                                 }`}
                                         </p>
@@ -62,7 +66,7 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                                                 })
                                             )}
                                         </div>
-                                        <p>Technologies I worked with</p>
+                                        <p className="sub-title">Technologies I worked with</p>
                                         <ul className="">
                                             {experience.technologies.map((tech, techIndex) => (
                                                 <li
@@ -78,9 +82,9 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                         </ul>
                     </div>
                 </section>
-                <section className="padding-s">
-                    <p>Education</p>
-                    <ul>
+                <section className="padding-m">
+                    <p className="title">Education</p>
+                    <ul className="margin--top--m">
                         <li>
                             Universidad Autonoma del Estado de Mexico, Software Engineer 2015 - 2020
                         </li>

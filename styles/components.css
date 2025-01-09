@@ -179,6 +179,7 @@
 .with-bottom {
   border-bottom: 1px solid var(--text-color);
 }
+
 .with-top {
   border-top: 1px solid var(--text-color);
 }
@@ -287,8 +288,8 @@
 .card {
   box-shadow: 0px 5px 15px 0px var(--shadow-box-color);
   padding: 1rem;
-  
-  &.full{
+
+  &.full {
     width: 100%;
   }
 }
@@ -310,19 +311,30 @@
 .padding-m {
   padding: 1rem;
 }
-.padding{
-  padding:1rem;
+
+.padding {
+  padding: 1rem;
 }
-.padding--s{
-    padding: 0.5rem;
+
+.padding--s {
+  padding: 0.5rem;
 }
-.padding--top--s{
+
+.padding--top--s {
   padding-top: 0.5rem;
 }
-.padding--top--m{
+
+.padding--top--m {
   padding-top: 1rem;
 }
 
+.padding--bottom-s {
+  padding-bottom: 0.5rem;
+}
+
+.margin--top--m {
+  margin-top: 1rem;
+}
 
 .bubble {
   border-radius: 25px;
@@ -334,15 +346,39 @@
   box-shadow: 0px 5px 10px 0px var(--shadow-box-color);
 }
 
-button.ghost{
+button.ghost {
   background-color: transparent;
   border: none;
   padding: 1rem;
   cursor: pointer;
 }
 
-.footer{
+a.ghost {
+  background-color: transparent;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer {
   background-color: var(--primary-color);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sub-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.to-the-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 @media all {
@@ -352,7 +388,9 @@ button.ghost{
 }
 
 @media print {
-  html, body {
+
+  html,
+  body {
     height: initial !important;
     overflow: initial !important;
   }
@@ -360,7 +398,7 @@ button.ghost{
 
 @media print {
   .page-break {
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: block;
     page-break-before: auto;
   }
@@ -370,4 +408,34 @@ button.ghost{
 @page {
   size: auto;
   margin: 20mm;
+}
+
+button.ahorizontal-shaking {
+  animation: horizontal-shaking 1s infinite;
+}
+
+a.horizontal-shaking {
+  animation: horizontal-shaking 1s infinite;
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0)
+  }
+
+  25% {
+    transform: translateX(5px)
+  }
+
+  50% {
+    transform: translateX(-5px)
+  }
+
+  75% {
+    transform: translateX(5px)
+  }
+
+  100% {
+    transform: translateX(0)
+  }
 }

@@ -13,6 +13,7 @@ import Carousel from "../components/carousel";
 import { ThemeModeContext } from "../utils/contexts";
 import staticData from "../utils/static-data";
 import { SocialMediaContent } from "../types/social-media-content";
+import ViewIcon from "../icons/view";
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
 (<div className="flex-row flex-justify-start-elements flex-align-center-elements">
@@ -145,7 +146,7 @@ export default function Home({
 
   return (
     <div className="main-container space-l">
-      <Link href="/pdf_resume">downalod PDF resume</Link>
+      <div className="to-the-right "><Link className="ghost horizontal-shaking padding-m font-lg flex flex-row flex-align-center-elements" href="/pdf_resume">Check a PDF preview <ViewIcon /></Link></div>
       <section className="section horizontal with-bottom">
         <AboutMeSection
           {...{ facts, darkModeEnabled: themeMode.darkModeEnabled }}

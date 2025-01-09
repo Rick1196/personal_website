@@ -151,3 +151,11 @@ pre {
   border-radius: 0.2rem;
   width: 100%;
 }
+
+.font--m{
+  font-size: 12px;
+}
+
+.font-lg{
+  font-size: 16px;
+}
