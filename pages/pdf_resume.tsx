@@ -42,7 +42,7 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                     <div className="padding-m">
                         <ul>
                             {experiences.map((experience, index) => (
-                                <li className="padding--top--m">
+                                <li key={`experience_${index}`} className="padding--top--m">
                                     <div className="page-break" />
                                     <div className="flex flex-columns space-s">
 
