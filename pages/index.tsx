@@ -37,8 +37,8 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
     <>
       <div className="with-right only-on-desktop flex-columns flex-center-elements space-m" >
         <div className="flex-columns flex-center-elements space-s">
-          <p className="center-text">{`Hi, I'm Ricardo`}</p>
-          <p className="center-text">{`Welcome to my personal portfolio`}</p>
+          <p className="center-text title">{`Hi, I'm Ricardo`}</p>
+          <p className="center-text sub-title">{`Welcome to my personal portfolio`}</p>
         </div>
         <div className="flex-columns flex-align-center-elements space-s">
           <p className="center-text">Find me on:</p>
