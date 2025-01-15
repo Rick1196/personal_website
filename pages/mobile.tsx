@@ -267,11 +267,11 @@ const Mobile: React.FC = () => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer className="main-container flex flex-row flex-align-center-elements flex-justify-center-elments">
       <Select
         value={currentDevice}
         onChange={({ target: { value } }) => setCurrentDevice(value)}
-        className="rounded p-2 text-gray-900"
+        className="ghost"
       >
         {Object.keys(devices).map((device, index) => (
           <option value={device} key={`${device}-${index}`}>
