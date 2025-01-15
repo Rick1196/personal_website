@@ -52,7 +52,7 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
         <Carousel isDarkModeEnabled={darkModeEnabled}>
           {facts.map((fact, index) => (
             <div
-              key={`fact_index`}
+              key={`fact_${index}`}
             >
               {parse(
                 toHTML(fact.description, {

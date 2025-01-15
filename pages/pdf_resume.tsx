@@ -67,7 +67,7 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                                             )}
                                         </div>
                                         <p className="sub-title">Technologies I worked with</p>
-                                        <ul className="">
+                                        <ul>
                                             {experience.technologies.map((tech, techIndex) => (
                                                 <li
                                                     key={`technology_${techIndex}_from_experience_${index}`}
@@ -82,12 +82,41 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                         </ul>
                     </div>
                 </section>
-                <section className="padding-m">
+                <section className="padding-m with-bottom">
                     <p className="title">Education</p>
                     <ul className="margin--top--m">
                         <li>
                             Universidad Autonoma del Estado de Mexico, Software Engineer 2015 - 2020
                         </li>
+                    </ul>
+                </section>
+                <section className="padding-m">
+                    <p className="title">About me</p>
+                    <ul className="margin--bottom--s ">
+                        {facts.map((fact, index) => (
+                            <li
+                                className="margin--bottom--s"
+                                key={`fact_${index}`}
+                            >
+                                {parse(
+                                    toHTML(fact.description, {
+                                        components: {
+                                            marks: {
+                                                link: ({ children, value, ...rest }) => {
+                                                    const href = value.href || "";
+                                                    return `<a
+                                                    target="_blank"
+                                                    href=${href}
+                                                  >
+                                                    ${children}
+                                                  </a>`;
+                                                },
+                                            },
+                                        },
+                                    })
+                                )}
+                            </li>
+                        ))}
                     </ul>
                 </section>
             </div >

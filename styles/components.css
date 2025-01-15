@@ -256,6 +256,10 @@
   gap: 2rem
 }
 
+.with-margin-bttom-s{
+  margin-bottom: 0.5rem;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -335,6 +339,11 @@
 .margin--top--m {
   margin-top: 1rem;
 }
+
+.margin--bottom--s {
+  margin-top: 0.5rem;
+}
+
 
 .bubble {
   border-radius: 25px;
