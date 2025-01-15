@@ -97,7 +97,7 @@ const ExperienceSection: React.FC<{
       <div className="timeline">
         <ul>
           {experiences.map((experience, index) => (
-            <li>
+            <li key={`experience_${index}`}>
               <div className="card flex flex-columns space-s">
                 <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white">
                   {`${getStringDate(experience.from)} ${experience.to ? `-${getStringDate(experience.to)}` : "..."
