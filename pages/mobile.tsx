@@ -300,7 +300,7 @@ const Mobile: React.FC = () => {
               <Screen {...rotatations[screenState.currentRotation].screenProps}>
                 {isOn ? (
                   <Iframe
-                    src="https://personal-website-kohl-theta.vercel.app/"
+                    src="https://personal-website-rick1196.vercel.app/"
                     id="content"
                     className="fadeIn"
                     title="content"

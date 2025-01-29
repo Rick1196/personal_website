@@ -14,6 +14,7 @@ import { ThemeModeContext } from "../utils/contexts";
 import staticData from "../utils/static-data";
 import { SocialMediaContent } from "../types/social-media-content";
 import ViewIcon from "../icons/view";
+import { replaceTokens } from "../utils/common";
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
 (<div className="flex-row flex-justify-start-elements flex-align-center-elements">
@@ -66,8 +67,13 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
                           >
                             ${children}
                           </a>`;
+
+                          
                       },
                     },
+                    block: ({children, value, ...rest}) =>{
+                        return replaceTokens(children||'')
+                    }
                   },
                 })
               )}
@@ -115,6 +121,7 @@ const ExperienceSection: React.FC<{
                             <ul>${children}</ul>
                           </div>`;
                         },
+                        
                       },
                     })
                   )}
@@ -168,11 +175,10 @@ export async function getStaticProps() {
   const facts: Fact[] = await client.fetch(
     `*[_type == "facts"]| order(_createdAt desc)`
   );
-
   return {
     props: {
       experiences,
-      facts,
+      facts
     },
     revalidate: 10,
   };

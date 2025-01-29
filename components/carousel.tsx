@@ -7,18 +7,7 @@ const Carousel: React.FC<{
 }> = ({ children, isDarkModeEnabled }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
 
-  // We are using react ref to 'tag' each of the images. Below will create an array of
-  // objects with numbered keys. We will use those numbers (i) later to access a ref of a
-  // specific image in this array.
-  const refs: Array<React.RefObject<HTMLDivElement>> = children.map(() => {
-    return React.createRef();
-  });
 
-
-  // Some validation for checking the array length could be added if needed
-
-  // Below functions will assure that after last image we'll scroll back to the start,
-  // or another way round - first to last in previousImage method.
   const nextImage = () => {
     if (currentImage >= children.length - 1) {
       setCurrentImage(0);

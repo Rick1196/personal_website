@@ -8,6 +8,7 @@ import { toHTML } from "@portabletext/to-html";
 import parse from "html-react-parser";
 import { getStringDate } from "../utils/date";
 import DownloadIcon from "../icons/download";
+import { replaceTokens } from "../utils/common";
 
 
 export default function PDFResume({ experiences, facts }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -112,6 +113,9 @@ export default function PDFResume({ experiences, facts }: InferGetStaticPropsTyp
                                                   </a>`;
                                                 },
                                             },
+                                            block: ({children, value, ...rest}) =>{
+                                                return replaceTokens(children||'')
+                                            }
                                         },
                                     })
                                 )}
