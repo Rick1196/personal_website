@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
-import { Experience, Fact } from "../../types";
-import { client } from "../../utils/sanityClient";
+import { Experience, Fact } from "../../../../types";
+import { client } from "../../../../utils/sanityClient";
 
-export default async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     const experiences: Experience[] = await client.fetch(
       `*[_type == "experiences"]| order(_createdAt desc)`
