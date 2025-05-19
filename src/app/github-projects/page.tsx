@@ -1,7 +1,15 @@
 import React from 'react';
 import { InferGetStaticPropsType } from "next";
+import api from '../../../utils/api';
 
-export default function GithubProjects({ repos }: InferGetStaticPropsType<typeof getStaticProps>) {
+export const preload = () => {
+    void api.getGithubProjects();
+}
+
+export default async function GithubProjects() {
+
+    const projects = await api.getGithubProjects();
+
     return <div>
         <textarea disabled style={{
             width: "100%",
@@ -10,18 +18,7 @@ export default function GithubProjects({ repos }: InferGetStaticPropsType<typeof
             fontSize: "0.8rem",
             lineHeight: 1.2,
         }}>
-            {repos}
+            {JSON.stringify(projects, undefined, 2)}
         </textarea>
     </div >
-}
-
-
-export async function getStaticProps() {
-    const repos = await ((await fetch("https://api.github.com/users/Rick1196/repos")).json());
-    return {
-        props: {
-            repos: JSON.stringify(repos, undefined, 2),
-        },
-        revalidate: 10,
-    };
 }
