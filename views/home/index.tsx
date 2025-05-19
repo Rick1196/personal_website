@@ -14,6 +14,11 @@ import { differenceInYears } from "date-fns";
 import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
 import ViewIcon from "../../icons/view";
+import api from "../../utils/api";
+
+export const preload = () => {
+  void api.getResumeData();
+}
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
 (<div className="flex-row flex-justify-start-elements flex-align-center-elements">

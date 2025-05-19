@@ -1,13 +1,10 @@
 import React from 'react';
 import { InferGetStaticPropsType } from "next";
 import api from '../../../utils/api';
-
-export const preload = () => {
-    void api.getGithubProjects();
-}
+import { preload } from '../../../views/github-projects';
 
 export default async function GithubProjects() {
-
+    preload()
     const projects = await api.getGithubProjects();
 
     return <div>

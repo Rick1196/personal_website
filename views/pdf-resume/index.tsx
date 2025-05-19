@@ -9,7 +9,11 @@ import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
 import { Experience, Fact } from "../../types";
 import { ThemeModeContext } from "../../utils/contexts";
+import api from "../../utils/api";
 
+export const preload = () => {
+  void api.getResumeData();
+}
 
 export default function PDFResumeView({
     experiences,
