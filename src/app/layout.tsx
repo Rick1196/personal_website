@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Improvised JI..",
-    description: "Improvised Project Management system",
+    title: "Ricardo Perez Resume",
+    description: "Ricardo Perez personal website",
 };
 
 export default function RootLayout({

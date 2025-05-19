@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { differenceInYears } from "date-fns";
 import { toHTML } from "@portabletext/to-html";
@@ -8,6 +8,7 @@ import DownloadIcon from "../../icons/download";
 import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
 import { Experience, Fact } from "../../types";
+import { ThemeModeContext } from "../../utils/contexts";
 
 
 export default function PDFResumeView({
@@ -17,6 +18,7 @@ export default function PDFResumeView({
     experiences: Experience[];
     facts: Fact[];
 }) {
+    const { darkModeEnabled } = useContext(ThemeModeContext)
     const contentRef = useRef<HTMLDivElement>(null);
     const handlePrint = useReactToPrint({
         contentRef,
@@ -29,7 +31,7 @@ export default function PDFResumeView({
                     className="ghost horizontal-shaking padding-m font-lg flex flex-row flex-align-center-elements"
                     onClick={() => handlePrint()}
                 >
-                    Download <DownloadIcon />
+                    Download <DownloadIcon color={darkModeEnabled ? "white" : "black"} />
                 </button>
             </div>
             <div className="padding-m" ref={contentRef}>
@@ -81,7 +83,7 @@ export default function PDFResumeView({
                                             {parse(
                                                 toHTML(experience.description, {
                                                     components: {
-                                                        list: ({ children, value, ...rest }) => {
+                                                        list: ({ children, }) => {
                                                             return `<div className="padding-m">
                                                                     <ul>${children}</ul>
                                                             </div>`;
@@ -124,7 +126,7 @@ export default function PDFResumeView({
                                     toHTML(fact.description, {
                                         components: {
                                             marks: {
-                                                link: ({ children, value, ...rest }) => {
+                                                link: ({ children, value, }) => {
                                                     const href = value.href || "";
                                                     return `<a
                                                     target="_blank"
@@ -134,7 +136,7 @@ export default function PDFResumeView({
                                                   </a>`;
                                                 },
                                             },
-                                            block: ({ children, value, ...rest }) => {
+                                            block: ({ children }) => {
                                                 return replaceTokens(children || "");
                                             },
                                         },
