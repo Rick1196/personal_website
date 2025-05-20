@@ -1,5 +1,6 @@
-import PDFResumeView, { preload } from "../../../views/pdf-resume";
+import PDFResumeView from "../../../views/pdf-resume";
 import api from "../../../utils/api";
+import { preload } from "../../../views/pdf-resume/server-side";
 
 export default async function PDFResume() {
   preload()

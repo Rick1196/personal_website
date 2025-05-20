@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Experience, Fact } from "../../types";
 import Image from "next/image";
 import Carousel from "@/components/carousel";
-import { toHTML } from "@portabletext/to-html";
+import { PortableText } from "@portabletext/react";
 import parse from "html-react-parser";
 import { SocialMediaContent } from "../../types/social-media-content";
 import staticData from "../../utils/static-data";
@@ -14,11 +14,6 @@ import { differenceInYears } from "date-fns";
 import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
 import ViewIcon from "../../icons/view";
-import api from "../../utils/api";
-
-export const preload = () => {
-  void api.getResumeData();
-}
 
 const SocialMediaItem: React.FC<{ content: SocialMediaContent }> = ({ content }) =>
 (<div className="flex-row flex-justify-start-elements flex-align-center-elements">
@@ -59,28 +54,22 @@ const AboutMeSection: React.FC<{ facts: Fact[]; darkModeEnabled: boolean }> = ({
                         <div
                             key={`fact_${index}`}
                         >
-                            {parse(
-                                toHTML(fact.description, {
-                                    components: {
-                                        marks: {
-                                            link: ({ children, value, ...rest }) => {
-                                                const href = value.href || "";
-                                                return `<a
-                            target="_blank"
-                            href=${href}
-                          >
-                            ${children}
-                          </a>`;
-
-
-                                            },
-                                        },
-                                        block: ({ children, value, ...rest }) => {
-                                            return replaceTokens(children || '')
-                                        }
+                            <PortableText value={fact.description} components={{
+                                marks: {
+                                    link: ({ children, value, ...rest }) => {
+                                        const href = value.href || "";
+                                        return `<a
+                                            target="_blank"
+                                            href=${href}
+                                        >
+                                            ${children}
+                                        </a>`;
                                     },
-                                })
-                            )}
+                                },
+                                block: ({ children, value, ...rest }) => {
+                                    return replaceTokens(value.children[0].text)
+                                }
+                            }} />
                         </div>
                     ))}
                 </Carousel>
@@ -117,18 +106,14 @@ const ExperienceSection: React.FC<{
                                     {experience.title} <span>{`(${experience.company})`}</span>
                                 </h3>
                                 <div className="">
-                                    {parse(
-                                        toHTML(experience.description, {
-                                            components: {
-                                                list: ({ children, value, ...rest }) => {
-                                                    return `<div className="padding-m">
-                            <ul>${children}</ul>
-                          </div>`;
-                                                },
 
-                                            },
-                                        })
-                                    )}
+                                    <PortableText value={experience.description} components={{
+                                        list: ({ children, value, ...rest }) => {
+                                            return `<div className="padding-m">
+                                                    <ul>${children}</ul>
+                                                </div>`;
+                                        },
+                                    }} />
                                 </div>
                                 <div className="flex flex-row flex-wrap">
                                     {experience.technologies.map((tech, techIndex) => (

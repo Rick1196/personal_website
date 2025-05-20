@@ -1,7 +1,8 @@
 import React from "react";
 
 import api from "../../utils/api";
-import { HomeView, preload } from "../../views/home";
+import { HomeView } from "../../views/home";
+import { preload } from "../../views/home/server-side";
 
 export default async function Home() {
   preload();

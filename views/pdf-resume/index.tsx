@@ -2,18 +2,14 @@
 import { useContext, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { differenceInYears } from "date-fns";
-import { toHTML } from "@portabletext/to-html";
+import { PortableText } from "@portabletext/react";
 import parse from "html-react-parser";
 import DownloadIcon from "../../icons/download";
 import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
 import { Experience, Fact } from "../../types";
 import { ThemeModeContext } from "../../utils/contexts";
-import api from "../../utils/api";
 
-export const preload = () => {
-  void api.getResumeData();
-}
 
 export default function PDFResumeView({
     experiences,
@@ -84,17 +80,13 @@ export default function PDFResumeView({
                                                 }`}
                                         </p>
                                         <div className="">
-                                            {parse(
-                                                toHTML(experience.description, {
-                                                    components: {
-                                                        list: ({ children, }) => {
-                                                            return `<div className="padding-m">
-                                                                    <ul>${children}</ul>
-                                                            </div>`;
-                                                        },
-                                                    },
-                                                })
-                                            )}
+                                            <PortableText value={experience.description} components={{
+                                                list: ({ children, value, ...rest }) => {
+                                                    return `<div className="padding-m">
+                                                    <ul>${children}</ul>
+                                                </div>`;
+                                                },
+                                            }} />
                                         </div>
                                         <p className="sub-title">Tech stack:</p>
                                         <ul>
@@ -126,26 +118,22 @@ export default function PDFResumeView({
                     <ul className="margin--bottom--s ">
                         {facts.map((fact, index) => (
                             <li className="margin--bottom--s" key={`fact_${index}`}>
-                                {parse(
-                                    toHTML(fact.description, {
-                                        components: {
-                                            marks: {
-                                                link: ({ children, value, }) => {
-                                                    const href = value.href || "";
-                                                    return `<a
-                                                    target="_blank"
-                                                    href=${href}
-                                                  >
-                                                    ${children}
-                                                  </a>`;
-                                                },
-                                            },
-                                            block: ({ children }) => {
-                                                return replaceTokens(children || "");
-                                            },
+                                <PortableText value={fact.description} components={{
+                                    marks: {
+                                        link: ({ children, value, ...rest }) => {
+                                            const href = value.href || "";
+                                            return `<a
+                                            target="_blank"
+                                            href=${href}
+                                        >
+                                            ${children}
+                                        </a>`;
                                         },
-                                    })
-                                )}
+                                    },
+                                    block: ({ children, value, ...rest }) => {
+                                        return replaceTokens(value.children[0].text)
+                                    }
+                                }} />
                             </li>
                         ))}
                     </ul>
