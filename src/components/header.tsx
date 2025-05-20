@@ -2,11 +2,16 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useContext, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import HamburgerMenu from "../../icons/hamburgerIcon";
 import MoonIcon from "../../icons/moonIcon";
 import SonIcon from "../../icons/sonIcon";
-import { inIframe } from "../../utils/common";
 import { ThemeModeContext } from "../../utils/contexts";
+
+const MobileLink = dynamic(() => import("./mobile-item"), {
+  ssr: false,
+});
+
 
 const Header: React.FC = () => {
   const { setDarkModeEnabled, darkModeEnabled } = useContext(ThemeModeContext);
@@ -17,8 +22,6 @@ const Header: React.FC = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const isInFrame = useMemo(inIframe, [])
 
   const handleThemeChange = useCallback((value: string) => {
     value === 'dark' ? setDarkModeEnabled(true) : setDarkModeEnabled(false);
@@ -105,13 +108,7 @@ const Header: React.FC = () => {
           >
             My Repositories
           </Link> */}
-          {!isInFrame ? (
-            <Link
-              href="/mobile"
-            >
-              Check a mobile device preview
-            </Link>
-          ) : null}
+          <MobileLink />
         </div>
       </div>
     </nav>
