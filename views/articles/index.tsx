@@ -4,11 +4,6 @@
 import Card from "@/components/card";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import api from "../../utils/api";
-
-export const preload =()=>{
-    void api.getArticles();
-}
 
 export default function ArticlesView({
   articles,

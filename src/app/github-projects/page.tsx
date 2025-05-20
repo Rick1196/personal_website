@@ -1,5 +1,4 @@
 import React from 'react';
-import { InferGetStaticPropsType } from "next";
 import api from '../../../utils/api';
 import { preload } from '../../../views/github-projects';
 
