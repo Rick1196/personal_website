@@ -108,10 +108,8 @@ const ExperienceSection: React.FC<{
                                 <div className="">
 
                                     <PortableText value={experience.description} components={{
-                                        list: ({ children, value, ...rest }) => {
-                                            return `<div className="padding-m">
-                                                    <ul>${children}</ul>
-                                                </div>`;
+                                        list: {
+                                            bullet: ({ children }) => <div className="experience-list"><ul>{children}</ul></div>
                                         },
                                     }} />
                                 </div>

@@ -3,7 +3,6 @@ import { useContext, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { differenceInYears } from "date-fns";
 import { PortableText } from "@portabletext/react";
-import parse from "html-react-parser";
 import DownloadIcon from "../../icons/download";
 import { getStringDate } from "../../utils/date";
 import { replaceTokens } from "../../utils/common";
@@ -81,15 +80,13 @@ export default function PDFResumeView({
                                         </p>
                                         <div className="">
                                             <PortableText value={experience.description} components={{
-                                                list: ({ children, value, ...rest }) => {
-                                                    return `<div className="padding-m">
-                                                    <ul>${children}</ul>
-                                                </div>`;
+                                                list: {
+                                                    bullet: ({ children }) => <div className="experience-list"><ul>{children}</ul></div>
                                                 },
                                             }} />
                                         </div>
                                         <p className="sub-title">Tech stack:</p>
-                                        <ul>
+                                        <ul className="tech-stack">
                                             {experience.technologies.map((tech, techIndex) => (
                                                 <li
                                                     key={`technology_${techIndex}_from_experience_${index}`}
