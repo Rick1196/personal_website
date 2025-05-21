@@ -135,7 +135,7 @@ const ExperienceSection: React.FC<{
 
 export const HomeView: React.FC<{ facts: Fact[], experiences: Experience[] }> = ({ facts, experiences }) => {
     const themeMode = useContext(ThemeModeContext);
-    return <div className="main-container space-l">
+    return facts && experiences ? <div className="main-container space-l">
         <div className="to-the-right "><Link className="ghost horizontal-shaking padding-m font-lg flex flex-row flex-align-center-elements" href="/pdf-resume">Check a PDF preview <ViewIcon /></Link></div>
         <section className="section horizontal with-bottom">
             <AboutMeSection
@@ -147,5 +147,5 @@ export const HomeView: React.FC<{ facts: Fact[], experiences: Experience[] }> = 
                 {...{ experiences, darkModeEnabled: themeMode.darkModeEnabled }}
             />
         </section>
-    </div>
+    </div> : <div>Loading...</div>
 }
