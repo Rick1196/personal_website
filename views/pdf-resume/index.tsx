@@ -23,7 +23,7 @@ export default function PDFResumeView({
         contentRef,
         documentTitle: "Ricardo_Perez.pdf",
     });
-    return (
+    return experiences && facts ? (
         <div className="main-container space-l font--m">
             <div className="to-the-right">
                 <button
@@ -137,5 +137,5 @@ export default function PDFResumeView({
                 </section>
             </div>
         </div>
-    );
+    ) : <div>Loading...</div>;
 }
