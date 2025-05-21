@@ -6,7 +6,7 @@ export async function GET() {
         const xmlData = await (await fetch("https://dev.to/feed/rick1196")).text();
         const parser = new XMLParser();
         const articles: DevFeed = parser.parse(xmlData);
-        const articlesItems = articles.rss.channel.item;
+        const articlesItems = articles?.rss.channel.item || [];
         const categories: Map<string, { tag: string; count: number }> = new Map();
         for (const article of articlesItems) {
             for (const tag of article.category || []) {
