@@ -8,17 +8,17 @@ import { useEffect, useState } from "react";
 export default function ArticlesView({
   articles,
   categories,
-}:{articles: Object[], categories:any[]}) {
+}: { articles: Object[], categories: any[] }) {
   const [query, setQuery] = useState<string | null>(null);
   const [filteredArticles, setFilteredArticles] = useState(
-    articles.rss.channel.item
+    articles?.rss.channel.item || []
   );
 
   useEffect(() => {
     if (query) {
       setFilteredArticles(
-        articles.rss.channel.item.filter((article) =>
-          article.category?.includes(query)
+        articles?.rss.channel.item.filter((article) =>
+          article?.category?.includes(query)
         )
       );
     }
@@ -52,19 +52,17 @@ export default function ArticlesView({
               <button
                 onClick={() => setQuery(category.tag)}
                 key={`filter_by_${category.tag}`}
-                className={`flex flex-row items-center justify-center gap-2 rounded p-2 dark:shadow-darkButton shadow-button ${
-                  query === category.tag
+                className={`flex flex-row items-center justify-center gap-2 rounded p-2 dark:shadow-darkButton shadow-button ${query === category.tag
                     ? "bg-gray-500 black dark:bg-white border-gray-500"
                     : "border"
-                }`}
+                  }`}
                 aria-label={`filter ${category.tag}`}
               >
                 <span
-                  className={`w-full text-gray-800 ${
-                    query === category.tag
+                  className={`w-full text-gray-800 ${query === category.tag
                       ? "dark:text-grey-800"
                       : "dark:text-white"
-                  }`}
+                    }`}
                 >
                   {category.tag}
                 </span>
@@ -95,13 +93,13 @@ export default function ArticlesView({
                 <div className="flex flex-row gap-2">
                   {article.category
                     ? article.category.map((tag, tagIndex) => (
-                        <span
-                          key={`${index}_${tag}_${tagIndex}`}
-                          className="shadow-bullet bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-white dark:text-grey-800"
-                        >
-                          {tag}
-                        </span>
-                      ))
+                      <span
+                        key={`${index}_${tag}_${tagIndex}`}
+                        className="shadow-bullet bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-white dark:text-grey-800"
+                      >
+                        {tag}
+                      </span>
+                    ))
                     : null}
                 </div>
               </div>
