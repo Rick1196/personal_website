@@ -24,7 +24,7 @@ export default function ArticlesView({
     }
   }, [query, articles]);
 
-  return (
+  return articles ? (
     <div className="flex flex-col span-2">
       <Link href={articles.rss.channel.link} target="_blank">
         <h1 className="text-center w-full mt-6 mb-6 text-2xl dark:text-white">
@@ -53,15 +53,15 @@ export default function ArticlesView({
                 onClick={() => setQuery(category.tag)}
                 key={`filter_by_${category.tag}`}
                 className={`flex flex-row items-center justify-center gap-2 rounded p-2 dark:shadow-darkButton shadow-button ${query === category.tag
-                    ? "bg-gray-500 black dark:bg-white border-gray-500"
-                    : "border"
+                  ? "bg-gray-500 black dark:bg-white border-gray-500"
+                  : "border"
                   }`}
                 aria-label={`filter ${category.tag}`}
               >
                 <span
                   className={`w-full text-gray-800 ${query === category.tag
-                      ? "dark:text-grey-800"
-                      : "dark:text-white"
+                    ? "dark:text-grey-800"
+                    : "dark:text-white"
                     }`}
                 >
                   {category.tag}
@@ -108,5 +108,5 @@ export default function ArticlesView({
         </div>
       </div>
     </div>
-  );
+  ) : <div>Loading...</div>;
 }
