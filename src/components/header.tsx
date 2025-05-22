@@ -1,15 +1,20 @@
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useCallback, useMemo, useState } from "react";
-import HamburgerMenu from "../icons/hamburgerIcon";
-import MoonIcon from "../icons/moonIcon";
-import SonIcon from "../icons/sonIcon";
-import { inIframe } from "../utils/common";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useContext, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import HamburgerMenu from "../../icons/hamburgerIcon";
+import MoonIcon from "../../icons/moonIcon";
+import SonIcon from "../../icons/sonIcon";
+import { ThemeModeContext } from "../../utils/contexts";
 
-const Header: React.FC<{
-  setDarkModeEnabled: React.Dispatch<React.SetStateAction<boolean>>;
-  darkModeEnabled: boolean;
-}> = ({ setDarkModeEnabled, darkModeEnabled }) => {
+const MobileLink = dynamic(() => import("./mobile-item"), {
+  ssr: false,
+});
+
+
+const Header: React.FC = () => {
+  const { setDarkModeEnabled, darkModeEnabled } = useContext(ThemeModeContext);
   const [displayMobileMenu, setDisplayMobileMenu] = useState<boolean>(false);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +22,6 @@ const Header: React.FC<{
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const isInFrame = useMemo(inIframe, [])
 
   const handleThemeChange = useCallback((value: string) => {
     value === 'dark' ? setDarkModeEnabled(true) : setDarkModeEnabled(false);
@@ -29,8 +32,8 @@ const Header: React.FC<{
     <nav className="header-container">
       <div className="theme-toggler-container">
         <div className="theme-toggler-title">
-          <span><SonIcon color={darkModeEnabled?'white':undefined}/></span>
-          <span><MoonIcon color={darkModeEnabled?'white':undefined}/></span>
+          <span><SonIcon color={darkModeEnabled ? 'white' : undefined} /></span>
+          <span><MoonIcon color={darkModeEnabled ? 'white' : undefined} /></span>
         </div>
         <div className="theme-toggler">
           <label className="theme-check">
@@ -105,13 +108,7 @@ const Header: React.FC<{
           >
             My Repositories
           </Link> */}
-          {!isInFrame ? (
-            <Link
-              href="/mobile"
-            >
-              Check a mobile device preview
-            </Link>
-          ) : null}
+          <MobileLink />
         </div>
       </div>
     </nav>

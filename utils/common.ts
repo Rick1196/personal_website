@@ -1,13 +1,5 @@
 import { differenceInYears } from "date-fns";
 
-export const inIframe = () => {
-  try {
-    return window.self !== window.top;
-  } catch (e) {
-    return true;
-  }
-};
-
 const tokensValues: { [key: string]: string | number } = {
   age: differenceInYears(new Date(), new Date("11/11/1996"))
 }

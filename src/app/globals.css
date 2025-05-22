@@ -1,4 +1,4 @@
-@import url('components.css');
+@import url('../../styles/components.css');
 
 :root {
   /* colors light theme(default theme) */
@@ -113,10 +113,18 @@ nav {
   color: var(--text-color);
 }
 
+button {
+  color: var(--text-color);
+}
+
 
 a {
   color: inherit;
   text-decoration: underline;
+}
+
+p {
+  color: var(--text-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -127,7 +135,8 @@ a {
 
 /* Base class for safe area */
 .safe {
-  margin: 1rem; /* Adjust the margin as needed */
+  margin: 1rem;
+  /* Adjust the margin as needed */
 }
 
 .carousel {
@@ -152,10 +161,10 @@ pre {
   width: 100%;
 }
 
-.font--m{
+.font--m {
   font-size: 12px;
 }
 
-.font-lg{
+.font-lg {
   font-size: 16px;
 }

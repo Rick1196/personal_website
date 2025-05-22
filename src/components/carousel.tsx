@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import LeftArrowIcon from "../icons/leftArrowIcon";
-import RightArrowIcon from "../icons/rightArrowIcon";
+import LeftArrowIcon from "../../icons/leftArrowIcon";
+import RightArrowIcon from "../../icons/rightArrowIcon";
 const Carousel: React.FC<{
   children: React.ReactNode[];
   isDarkModeEnabled: boolean;
