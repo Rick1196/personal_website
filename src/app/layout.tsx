@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/header";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -41,7 +42,9 @@ export default function RootLayout({
                     <Header
                     />
                     <main>
-                        {children}
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {children}
+                        </Suspense>
                     </main>
                 </ThemeProvider>
                 <Footer />
