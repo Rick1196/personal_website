@@ -1,0 +1,68 @@
+section.container {
+	section {
+		display: flex;
+		align-items: flex-start;
+		gap: 30px;
+		background-color: transparent;
+		border: 1px solid var(--color-border);
+	}
+
+	h3{
+		font-size: 0.9rem;
+		text-align: start;
+		font-weight: 500;
+	}
+
+	p{
+		font-size: 0.8rem;
+		text-align: start;
+		margin-top: 8px;	}
+
+	.sectionTime {
+		text-align: start;
+		font-size: 1rem;
+	}
+
+	.sectionTitle {
+		position: sticky;
+		top: 20px;
+	}
+
+	.sectionContent {
+		display: flex;
+		flex-direction: column;
+	}
+
+
+	article {
+		background-color: transparent;
+		display: flex;
+		gap: 30px;
+		width: 100%;
+		min-width: 75vw;
+	}
+
+	aside {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.dot {
+		--size: .5rem;
+		width: var(--size);
+		height: var(--size);
+		margin: calc((1rem - var(--size))/2);
+		border-radius: 50%;
+		background-color: var(--color-font);
+		flex-grow: 0;
+	}
+
+	.line {
+		flex-grow: 1;
+		margin: 8px 0;
+		width: 3px;
+		background-color: var(--color-font);
+	}
+
+}
