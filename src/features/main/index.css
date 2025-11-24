@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .loading {
+        height: 48px;
+        width: 48px;
+    }
+}
+
+
+.title-container {
+    color: white;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+
+    transition: all 1.0s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.title-container.intro {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: white;
+}
+
+.title-container.normal {
+    height: 128px;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.main-title {
+    margin: 0;
+    transition: font-size 1.0s ease;
+}
+
+.intro .main-title {
+    font-size: 1.5rem;
+}
+
+.normal .main-title {
+    font-size: 1rem;
+    text-align: start;
+}
+
+section {
+    .description {
+        font-size: 0.9rem;
+        color: #181717;
+        margin: 0 auto;
+        text-align: start;
+    }
+
+    h2 {
+        text-align: start;
+        font-size: 1rem;
+    }
+}

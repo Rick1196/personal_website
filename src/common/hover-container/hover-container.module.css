@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    color: black;
+    border-radius: 1rem;
+    border: solid 1px lightgray;
+    width: 100%;
+    margin: 16px 0;
+    &:hover {
+        -webkit-box-shadow: 4px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 4px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 4px 8px 24px 0px rgba(66, 68, 90, 1);
+        transform: scale(1.1);
+    }
+}
