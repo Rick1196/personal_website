@@ -15,6 +15,7 @@ const inIframe = () => {
 
 const baseItems = [
     { label: "Home", path: "/" },
+    { label: "PDF Preview", path: "/pdf" },
 ]
 
 const items = inIframe() ? [
