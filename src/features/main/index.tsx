@@ -22,7 +22,6 @@ const Name = () => {
 }
 
 const Main = () => {
-    useEffect(() => { console.log("re render") })
     const query = useQueries({
         queries: [
             { queryKey: ['resume', 'facts'], queryFn: api.getFacts, refetchOnMount: true, refetchOnWindowFocus: false },
